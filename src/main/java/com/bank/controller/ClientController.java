@@ -1,7 +1,7 @@
 package com.bank.controller;
 
 
-import com.bank.Dto.CustomerDto;
+import com.bank.dto.CustomerDto;
 import com.bank.domain.Customer;
 import com.bank.mapper.CustomerMapper;
 import com.bank.service.DbService;

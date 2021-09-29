@@ -5,9 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Entity;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 
 
 @NoArgsConstructor
