@@ -1,9 +1,35 @@
 package com.bank.service;
 
+import com.bank.domain.Customer;
+import com.bank.exception.CustomerNotFoundException;
 import com.bank.repository.CustomerRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
 public class DbService {
 
-    private final CustomerRepository repository;
+    private final CustomerRepository customerRepository;
+
+    public Customer createCustomer(Customer customer) {   // --- jeszcze nie w CrudRepo
+        return customerRepository.save(customer);
+    }
+
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
+    }
+
+    public Customer getCustomerById(Long customerId) {
+        return customerRepository.findById(customerId).orElseThrow(() ->
+                new CustomerNotFoundException("Customer with id: " + customerId + "doesn't exsist"));
+    }
+
+    public void deleteCustomerById(Long customerId) {
+        customerRepository.deleteById(customerId);
+    }
+
 
 }

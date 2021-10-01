@@ -12,7 +12,6 @@ public class CustomerDto {
     private String email;
     private String password;
     private Boolean isBlocked;
-    private Long balance;
     private Boolean loan;
 }
 

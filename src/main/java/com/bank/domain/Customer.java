@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 
@@ -16,7 +16,7 @@ import javax.persistence.GeneratedValue;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity
+@Entity (name = "customers")
 public class Customer {
 
     @Id
@@ -27,7 +27,7 @@ public class Customer {
 
     @Column(name = "firstName")
     @NotNull
-    private String name;
+    private String firstname;
 
     @Column(name = "lastName")
     @NotNull
@@ -44,10 +44,6 @@ public class Customer {
     @Column(name = "isBlocked")
     @NotNull
     private Boolean isBlocked;
-
-    @Column(name = "balance")
-    @NotNull
-    private Long balance;
 
     @Column(name = "loan")
     @NotNull
