@@ -3,7 +3,7 @@ package com.bank.controller;
 import com.bank.domain.Customer;
 import com.bank.dto.CustomerDto;
 import com.bank.mapper.CustomerMapper;
-import com.bank.service.DbService;
+import com.bank.service.CustomerDbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,12 +16,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerController {
 
-    private final DbService service;
+    private final CustomerDbService customerDbService;
     private final CustomerMapper customerMapper;
 
     @RequestMapping(method = RequestMethod.GET, value = "getCustomers")
     public List<CustomerDto> getCustomers() {
-        List<Customer> customers = service.getAllCustomers();
+        List<Customer> customers = customerDbService.getAllCustomers();
         return customerMapper.mapToCustomerDtoList(customers);
     }
 }

@@ -6,7 +6,6 @@ plugins {
 
 group = 'com'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
 
 configurations {
 	compileOnly {
@@ -34,7 +33,7 @@ dependencies {
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
 	testCompileOnly 'org.projectlombok:lombok:1.18.12'
 
-	runtimeOnly 'mysql:mysql-connector-java'
+	implementation 'mysql:mysql-connector-java:8.0.25'
 }
 
 test {

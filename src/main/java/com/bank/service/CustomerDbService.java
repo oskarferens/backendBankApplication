@@ -10,11 +10,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class DbService {
+public class CustomerDbService {
 
     private final CustomerRepository customerRepository;
 
-    public Customer createCustomer(Customer customer) {   // --- jeszcze nie w CrudRepo
+    public Customer createCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
 
@@ -31,5 +31,8 @@ public class DbService {
         customerRepository.deleteById(customerId);
     }
 
+    public Customer saveCustomer(final Customer customer) {
+        return customerRepository.save(customer);
+    }
 
 }

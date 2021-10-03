@@ -15,6 +15,7 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     Optional<Customer> findById(Long id);
 
-
+    @Override
+    Customer save(Customer customer);
 }
 
