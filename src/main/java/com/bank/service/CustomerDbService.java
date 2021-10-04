@@ -27,12 +27,12 @@ public class CustomerDbService {
                 new CustomerNotFoundException("Customer with id: " + customerId + "doesn't exsist"));
     }
 
-    public void deleteCustomerById(Long customerId) {
-        customerRepository.deleteById(customerId);
-    }
-
     public Customer saveCustomer(final Customer customer) {
         return customerRepository.save(customer);
+    }
+
+    public void deleteCustomerById (Long customerId) {
+        customerRepository.deleteById(customerId);
     }
 
 }
