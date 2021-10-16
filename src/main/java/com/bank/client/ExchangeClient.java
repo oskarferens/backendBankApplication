@@ -25,6 +25,4 @@ public class ExchangeClient {
         return restTemplate.getForObject(url, ExchangeDto.class);
     }
 
-
-
 }

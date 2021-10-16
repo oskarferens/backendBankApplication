@@ -1,5 +1,6 @@
 package com.bank.domain;
 
+import com.bank.dto.RatesDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -7,6 +8,8 @@ import lombok.Getter;
 @Getter
 public class Exchange {
 
-    private double currency;
+    RatesDto rates;
+    private String base;
+    private String date;
 
 }

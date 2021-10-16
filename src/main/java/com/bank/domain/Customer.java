@@ -36,9 +36,5 @@ public class Customer {
     @Column(name = "isBlocked")
     @NotNull
     private Boolean isBlocked;
-
-    @Column(name = "loan")
-    @NotNull
-    private Boolean loan;
 }
 

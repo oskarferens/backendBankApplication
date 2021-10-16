@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountDto {
-    private Long customerID;
-    private Long accountId;
-    private Long balance;
-    private Long bitcoinBalance;
+public class OperationDto {
+    private Long operationId;
+    private double value;
+    private double internationalTransfer;
+    private double transfer;
 }

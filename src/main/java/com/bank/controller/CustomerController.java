@@ -1,7 +1,7 @@
 package com.bank.controller;
 
-import com.bank.domain.Customer;
 import com.bank.dto.CustomerDto;
+import com.bank.exception.CustomerNotFoundException;
 import com.bank.mapper.CustomerMapper;
 import com.bank.service.CustomerDbService;
 import lombok.RequiredArgsConstructor;
@@ -45,11 +45,15 @@ public class CustomerController {
         );
     }
 
+    @PatchMapping("blockCustomer")
+    public void blockUser(@RequestParam Long customerId) throws CustomerNotFoundException {
+        customerDbService.blockCustomer(customerId);
+    }
+
     @DeleteMapping("deleteCustomer")
     public void deleteCustomer(@RequestParam Long customerId) {
         customerDbService.deleteCustomerById(customerId);
     }
-
 
 }
 

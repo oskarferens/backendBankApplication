@@ -10,15 +10,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties (ignoreUnknown = true)
-public class ExchangeDto {
+public class RatesDto {
 
-    @JsonProperty("base")
-    private String base;
+    @JsonProperty("PLN")
+    private double PLN;
 
-    @JsonProperty("date")
-    private String date;
+    @JsonProperty("EUR")
+    private double EUR;
 
-    @JsonProperty("rates")
-    private RatesDto rates;
+    @JsonProperty("USD")
+    private double USD;
+
+    @JsonProperty("all")
+    private double all;
 
 }

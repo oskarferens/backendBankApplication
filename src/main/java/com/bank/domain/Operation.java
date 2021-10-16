@@ -11,29 +11,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity(name = "accounts")
-public class Account {
-
-    //Chyba one to many
-    @Column(name = "customerId")
-    @NotNull
-    private Long customerId;
+@Entity(name = "operations")
+public class Operation {
 
     @Id
     @GeneratedValue
-    @Column(name = "accountId", unique = true)
+    @Column(name = "operationId", unique = true)
     @NotNull
-    private Long accountId;
+    private Long operationId;
 
-    @Column(name = "balance")
+    @Column(name = "value")
     @NotNull
-    private Long balance;
+    private double value;
 
-    @Column(name = "bitcoinBalance")
+    @Column(name = "internationalTransfer")
     @NotNull
-    private Long bitcoinBalance;
+    private double internationalTransfer;
+
+    @Column(name = "transfer")
+    @NotNull
+    private double transfer;
+
 }

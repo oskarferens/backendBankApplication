@@ -38,4 +38,7 @@ public class AccountDbService {
    public Optional<Account> getBalanceByAccountId(Long account) {
         return accountRepository.findById(account);
     }
+
+    // Dodac metode, ktora pobierze kursy i przeliczy //
+
 }

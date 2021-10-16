@@ -22,8 +22,7 @@ public class CustomerMapper {
                 customerDto.getLastName(),
                 customerDto.getEmail(),
                 customerDto.getPassword(),
-                customerDto.getIsBlocked(),
-                customerDto.getLoan()
+                customerDto.getIsBlocked()
         );
     }
 
@@ -34,8 +33,7 @@ public class CustomerMapper {
                 customer.getLastname(),
                 customer.getEmail(),
                 customer.getPassword(),
-                customer.getIsBlocked(),
-                customer.getLoan()
+                customer.getIsBlocked()
         );
     }
 

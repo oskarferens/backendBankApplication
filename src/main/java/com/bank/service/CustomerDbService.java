@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +34,15 @@ public class CustomerDbService {
 
     public void deleteCustomerById (Long customerId) {
         customerRepository.deleteById(customerId);
+    }
+
+    public void blockCustomer(Long customerId) throws CustomerNotFoundException {
+        Optional<Customer> customerToBlock = customerRepository.findById(customerId);
+        Customer blockedCustomer = customerToBlock.orElseThrow(() -> new CustomerNotFoundException("Customer with id: " + customerId + " not found"));
+        if (!blockedCustomer.getIsBlocked()) {
+            blockedCustomer.setIsBlocked(true);
+        }
+        customerRepository.save(blockedCustomer);
     }
 
 }
