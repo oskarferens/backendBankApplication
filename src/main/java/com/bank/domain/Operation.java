@@ -37,4 +37,8 @@ public class Operation {
     @NotNull
     private double transfer;
 
+    @Column(name = "operationComplete")
+    @NotNull
+    private boolean operationComplete;
+
 }

@@ -34,6 +34,8 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok:1.18.12'
 
 	implementation 'mysql:mysql-connector-java:8.0.25'
+
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 }
 
 test {

@@ -1,6 +1,5 @@
 package com.bank.service;
 
-import com.bank.domain.Customer;
 import com.bank.domain.Operation;
 import com.bank.exception.OperationNotFoundException;
 import com.bank.repository.AccountRepository;
@@ -36,15 +35,15 @@ public class OperationDbService {
         operationRepository.deleteById(operationId);
     }
 
-    public Operation makeTransfer(//klasa transfer) {
+    /*public Operation makeTransfer(klasa transfer) {
 
-                                  //w klasie transfer component, a tutaj autowired
-        accountRepository.findByCustomerId(1L)
-        //getAccountByCustomerID
-        //getBalance()
-        //return customerRepository.findById(ID customera);
-        return null;
-    }
+                                  w klasie transfer component, a tutaj autowired
+
+        getAccountByCustomerID
+        getBalance()
+        return customerRepository.findById(ID customera);
+
+    }*/
 
     public Operation makeInternationalTransfer() {
         return null;
@@ -52,7 +51,6 @@ public class OperationDbService {
 
 }
 //A tu przekazujesz takie parametry jakie zdefiniowałeś w dbService w tej metodzie
-
 
 //Musisz wyszukać account po id klienta od którego robisz przelew.
 // Potem zmodyfikować stan tego accounta (pobrać kasę) i zapisać.

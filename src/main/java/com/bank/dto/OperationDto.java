@@ -12,4 +12,5 @@ public class OperationDto {
     private double value;
     private double internationalTransfer;
     private double transfer;
+    private boolean operationComplete;
 }

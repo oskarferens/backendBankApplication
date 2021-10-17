@@ -20,7 +20,8 @@ public class OperationMapper {
                 operationDto.getOperationId(),
                 operationDto.getValue(),
                 operationDto.getTransfer(),
-                operationDto.getInternationalTransfer()
+                operationDto.getInternationalTransfer(),
+                operationDto.isOperationComplete()
         );
     }
 
@@ -29,7 +30,8 @@ public class OperationMapper {
                 operation.getOperationId(),
                 operation.getValue(),
                 operation.getInternationalTransfer(),
-                operation.getTransfer()
+                operation.getTransfer(),
+                operation.isOperationComplete()
         );
     }
 
