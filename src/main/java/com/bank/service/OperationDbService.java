@@ -1,22 +1,25 @@
 package com.bank.service;
 
+import com.bank.domain.Account;
 import com.bank.domain.Operation;
 import com.bank.exception.OperationNotFoundException;
 import com.bank.repository.AccountRepository;
-import com.bank.repository.CustomerRepository;
 import com.bank.repository.OperationRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class OperationDbService {
 
+    @Autowired
+    Account account;
     private final AccountRepository accountRepository;
     private final OperationRepository operationRepository;
-    private final CustomerRepository customerRepository;
 
     public Operation getOperationById(Long operationId) {
         return operationRepository.findById(operationId).orElseThrow(() ->
@@ -35,21 +38,28 @@ public class OperationDbService {
         operationRepository.deleteById(operationId);
     }
 
-    /*public Operation makeTransfer(klasa transfer) {
 
-                                  w klasie transfer component, a tutaj autowired
-
-        getAccountByCustomerID
-        getBalance()
-        return customerRepository.findById(ID customera);
-
-    }*/
-
-    public Operation makeInternationalTransfer() {
-        return null;
+    public void makeTransfer(Long from, Long to, Integer value) {
+        Optional<Account> actFrom = accountRepository.findById(from);
+        Account actTo = accountRepository.findById(to);
+        actFrom.setBalance(actFrom.getBalance() - value);
+        actTo.setBalance(actTo.getBalance() + value);
+        accountRepository.save(actFrom.get().setBalance(from).);
+        accountRepository.save(actTo);
     }
-
 }
+/*
+
+    public void makeTransfer(String from, String to, Integer amount) {
+        Account actFrom = accountDto.findAccount(from);
+        Account actTo = accountDto.findAccount(to);
+        actFrom.saldo -= amount;
+        actTo.saldo += amount;
+        accountDto.save(actFrom);
+        accountDto.save(actTo);
+    }
+*/
+
 //A tu przekazujesz takie parametry jakie zdefiniowałeś w dbService w tej metodzie
 
 //Musisz wyszukać account po id klienta od którego robisz przelew.

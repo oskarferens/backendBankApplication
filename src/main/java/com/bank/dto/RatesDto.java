@@ -15,8 +15,8 @@ public class RatesDto {
     @JsonProperty("PLN")
     private double PLN;
 
-    @JsonProperty("EUR")
-    private double EUR;
+    @JsonProperty("SEK")
+    private double SEK;
 
     @JsonProperty("USD")
     private double USD;

@@ -18,10 +18,14 @@ public class AccountDbService {
         return accountRepository.findAll();
     }
 
-    public Account getAccountById(Long accountId) throws AccountNotFoundException {
+    public Optional<Account> findById(Long id) {
+        return accountRepository.findById(id);
+    }
+
+    /*public Account getAccountById(Long accountId) throws AccountNotFoundException {
         return accountRepository.findById(accountId).orElseThrow(() ->
                 new AccountNotFoundException("Account with id: " + accountId + "doesn't exsist"));
-    }
+    }*/
 
     public Account createAccount(Account account) {
         return accountRepository.save(account);

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+@Component
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -18,7 +20,6 @@ import javax.validation.constraints.NotNull;
 @Entity(name = "accounts")
 public class Account {
 
-    //Chyba one to many
     @Column(name = "customerId")
     @NotNull
     private Long customerId;
