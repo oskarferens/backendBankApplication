@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -12,6 +14,6 @@ import lombok.Setter;
 public class AccountDto {
     private Long customerID;
     private Long accountId;
-    private Long balance;
+    private BigDecimal balance;
     private Long bitcoinBalance;
 }

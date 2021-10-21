@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @Component
 @NoArgsConstructor
@@ -32,7 +33,7 @@ public class Account {
 
     @Column(name = "balance")
     @NotNull
-    private Long balance;
+    private BigDecimal balance;
 
     @Column(name = "bitcoinBalance")
     @NotNull

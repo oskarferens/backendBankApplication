@@ -1,13 +1,11 @@
 package com.bank.controller;
 
 import com.bank.dto.AccountDto;
-import com.bank.dto.CustomerDto;
 import com.bank.mapper.AccountMapper;
 import com.bank.service.AccountDbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.security.auth.login.AccountNotFoundException;
 import java.util.List;
 
 @RestController
@@ -26,10 +24,8 @@ public class AccountController {
     }
 
     @GetMapping("getAccountById")
-    public AccountDto getAccountById (@RequestParam Long accountId) throws AccountNotFoundException {
-        return accountMapper.mapToAccountDto(
-                accountDbService.getAccountById(accountId)
-        );
+    public AccountDto findAccountByAccountId(@RequestParam AccountDto accountDto) {
+        return accountMapper.mapToAccountDto(accountDbService.findAccountByAccountId(accountDto.getAccountId()));
     }
 
     @PostMapping("createAccount")

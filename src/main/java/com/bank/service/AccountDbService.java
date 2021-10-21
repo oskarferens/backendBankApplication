@@ -18,14 +18,9 @@ public class AccountDbService {
         return accountRepository.findAll();
     }
 
-    public Optional<Account> findById(Long id) {
-        return accountRepository.findById(id);
+    public Account findAccountByAccountId(Long accountId) {
+        return accountRepository.findAccountByAccountId(accountId);
     }
-
-    /*public Account getAccountById(Long accountId) throws AccountNotFoundException {
-        return accountRepository.findById(accountId).orElseThrow(() ->
-                new AccountNotFoundException("Account with id: " + accountId + "doesn't exsist"));
-    }*/
 
     public Account createAccount(Account account) {
         return accountRepository.save(account);
@@ -38,11 +33,4 @@ public class AccountDbService {
     public void deleteAccountById(Long accountId) {
         accountRepository.deleteById(accountId);
     }
-
-   public Optional<Account> getBalanceByAccountId(Long account) {
-        return accountRepository.findById(account);
-    }
-
-    // Dodac metode, ktora pobierze kursy i przeliczy //
-
 }

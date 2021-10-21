@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class OperationDto {
     private Long operationId;
-    private double value;
+    private BigDecimal value;
     private double internationalTransfer;
     private double transfer;
     private boolean operationComplete;

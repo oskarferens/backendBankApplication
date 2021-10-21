@@ -24,10 +24,9 @@ public class OperationController {
     }
 
     @GetMapping("getOperationById")
-    public OperationDto getOperationById (@RequestParam Long operationId) {
-        return operationMapper.mapToOperationDto(
-                operationDbService.getOperationById(operationId)
-        );
+    public OperationDto findByOperationId (@RequestParam OperationDto operationDto) {
+        return operationMapper.mapToOperationDto(operationDbService.findByOperationId(operationDto.getOperationId()));
+
     }
 
     @PostMapping("createOperation")

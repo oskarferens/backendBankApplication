@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 
 @NoArgsConstructor
@@ -27,7 +28,7 @@ public class Operation {
 
     @Column(name = "value")
     @NotNull
-    private double value;
+    private BigDecimal value;
 
     @Column(name = "internationalTransfer")
     @NotNull

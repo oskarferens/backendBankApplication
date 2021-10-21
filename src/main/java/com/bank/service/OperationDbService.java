@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +22,8 @@ public class OperationDbService {
     private final AccountRepository accountRepository;
     private final OperationRepository operationRepository;
 
-    public Operation getOperationById(Long operationId) {
-        return operationRepository.findById(operationId).orElseThrow(() ->
-                new OperationNotFoundException("Operation with id: " + operationId + "doesn't exsist"));
+    public Operation findByOperationId(Long operationId) {
+        return operationRepository.findByOperationId(operationId);
     }
 
     public List<Operation> getAllOperations() {
@@ -38,27 +38,15 @@ public class OperationDbService {
         operationRepository.deleteById(operationId);
     }
 
-
-    public void makeTransfer(Long from, Long to, Integer value) {
-        Optional<Account> actFrom = accountRepository.findById(from);
-        Account actTo = accountRepository.findById(to);
-        actFrom.setBalance(actFrom.getBalance() - value);
-        actTo.setBalance(actTo.getBalance() + value);
-        accountRepository.save(actFrom.get().setBalance(from).);
+    public void makeTransfer(Long from, Long to, BigDecimal value) {
+        Account actFrom = accountRepository.findAccountByAccountId(from);
+        Account actTo = accountRepository.findAccountByAccountId(to);
+        actFrom.setBalance(actFrom.getBalance().add(value));
+        actTo.setBalance(actTo.getBalance().add(value));
+        accountRepository.save(actFrom);
         accountRepository.save(actTo);
     }
 }
-/*
-
-    public void makeTransfer(String from, String to, Integer amount) {
-        Account actFrom = accountDto.findAccount(from);
-        Account actTo = accountDto.findAccount(to);
-        actFrom.saldo -= amount;
-        actTo.saldo += amount;
-        accountDto.save(actFrom);
-        accountDto.save(actTo);
-    }
-*/
 
 //A tu przekazujesz takie parametry jakie zdefiniowałeś w dbService w tej metodzie
 
