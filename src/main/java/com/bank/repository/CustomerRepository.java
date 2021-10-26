@@ -17,5 +17,10 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     @Override
     Customer save(Customer customer);
+
+    Customer findByFirstname(String firstname);
 }
+
+//Fixed, While using CrudRepository of Spring , we have to append the
+// propertyname correctly after findBy otherwise it will give you exception "No Property Found for Type”
 

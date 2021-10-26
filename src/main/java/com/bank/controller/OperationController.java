@@ -9,39 +9,39 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/operation")
+@RequestMapping("/operation")
 @RequiredArgsConstructor
 public class OperationController {
 
     private final OperationDbService operationDbService;
     private final OperationMapper operationMapper;
 
-    @GetMapping("getOperations")
+    @GetMapping("/getOperations")
     public List<OperationDto> getAllOperations() {
         return operationMapper.mapToOperationDtoList(
                 operationDbService.getAllOperations()
         );
     }
 
-    @GetMapping("getOperationById")
+    @GetMapping("/getOperationById")
     public OperationDto findByOperationId (@RequestParam OperationDto operationDto) {
         return operationMapper.mapToOperationDto(operationDbService.findByOperationId(operationDto.getOperationId()));
 
     }
 
-    @PostMapping("createOperation")
+    @PostMapping("/createOperation")
     public void createOperation(@RequestBody OperationDto operationDto) {
         operationDbService.createOperation(
                 operationMapper.mapToOperation(operationDto)
         );
     }
 
-    @PostMapping("makeTransfer")
+    @PostMapping("/makeTransfer")
     public void makeTransfer(@RequestBody OperationDto operationDto) {
 
     }
 
-    @DeleteMapping("deleteOperation")
+    @DeleteMapping("/deleteOperation")
     public void deleteOperationById(@RequestParam Long operationId) {
         operationDbService.deleteOperationById(operationId);
     }

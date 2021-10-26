@@ -4,9 +4,8 @@ import com.bank.domain.Account;
 import com.bank.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import javax.security.auth.login.AccountNotFoundException;
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +19,10 @@ public class AccountDbService {
 
     public Account findAccountByAccountId(Long accountId) {
         return accountRepository.findAccountByAccountId(accountId);
+    }
+
+    public Account getBalance(BigDecimal balance) {
+        return accountRepository.findByBalance(balance);
     }
 
     public Account createAccount(Account account) {

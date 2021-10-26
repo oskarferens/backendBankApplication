@@ -23,6 +23,10 @@ public class CustomerDbService {
         return customerRepository.findAll();
     }
 
+    public Customer getCustomerByFirstname(String firstName) {
+        return customerRepository.findByFirstname(firstName);
+    }
+
     public Customer getCustomerById(Long customerId) {
         return customerRepository.findById(customerId).orElseThrow(() ->
                 new CustomerNotFoundException("Customer with id: " + customerId + "doesn't exsist"));

@@ -2,7 +2,6 @@ package com.bank.mapper;
 
 import com.bank.domain.Customer;
 import com.bank.dto.CustomerDto;
-import com.bank.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +11,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class CustomerMapper {
-
-    private final CustomerRepository customerRepository;
 
     public Customer mapToCustomer(final CustomerDto customerDto) {
         return new Customer(

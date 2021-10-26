@@ -2,7 +2,6 @@ package com.bank.service;
 
 import com.bank.domain.Account;
 import com.bank.domain.Operation;
-import com.bank.exception.OperationNotFoundException;
 import com.bank.repository.AccountRepository;
 import com.bank.repository.OperationRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,14 +10,13 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class OperationDbService {
 
     @Autowired
-    Account account;
+
     private final AccountRepository accountRepository;
     private final OperationRepository operationRepository;
 

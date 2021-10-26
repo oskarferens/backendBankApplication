@@ -5,6 +5,7 @@ import com.bank.exception.CustomerNotFoundException;
 import com.bank.mapper.CustomerMapper;
 import com.bank.service.CustomerDbService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,43 +15,51 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerController {
 
+    @Autowired
     private final CustomerDbService customerDbService;
+    @Autowired
     private final CustomerMapper customerMapper;
 
-    @GetMapping("getCustomers")
+    @GetMapping("/getCustomers")
     public List<CustomerDto> getAllCustomers() {
         return customerMapper.mapToCustomerDtoList(
                 customerDbService.getAllCustomers()
         );
     }
 
-    @GetMapping("getCustomerById")
+    @GetMapping("/getCustomerById")
     public CustomerDto getCustomerById (@RequestParam Long customerId) {
         return customerMapper.mapToCustomerDto(
                 customerDbService.getCustomerById(customerId)
         );
     }
 
-    @PostMapping("createCustomer")
+    @GetMapping("/getCustomerByName/{firstName}")
+    public CustomerDto getCustomerByFirstname (@PathVariable String firstName) {
+        return customerMapper.mapToCustomerDto(customerDbService.getCustomerByFirstname(firstName)
+        );
+    }
+
+    @PostMapping("/createCustomer")
     public void createCustomer(@RequestBody CustomerDto customerDto) {
         customerDbService.createCustomer(
                 customerMapper.mapToCustomer(customerDto)
         );
     }
 
-    @PutMapping("updateCustomer")
+    @PutMapping("/updateCustomer")
     public CustomerDto updateCustomer(@RequestBody CustomerDto customerDto) {
         return customerMapper.mapToCustomerDto(customerDbService.saveCustomer(customerMapper.mapToCustomer(customerDto)
                 )
         );
     }
 
-    @PatchMapping("blockCustomer")
+    @PatchMapping("/blockCustomer")
     public void blockUser(@RequestParam Long customerId) throws CustomerNotFoundException {
         customerDbService.blockCustomer(customerId);
     }
 
-    @DeleteMapping("deleteCustomer")
+    @DeleteMapping("/deleteCustomer")
     public void deleteCustomer(@RequestParam Long customerId) {
         customerDbService.deleteCustomerById(customerId);
     }

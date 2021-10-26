@@ -8,7 +8,8 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity(name = "customers")
+@Entity
+@Table(name = "customers")
 public class Customer {
 
     @Id
