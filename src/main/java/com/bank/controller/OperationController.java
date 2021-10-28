@@ -6,6 +6,7 @@ import com.bank.service.OperationDbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -37,8 +38,8 @@ public class OperationController {
     }
 
     @PostMapping("/makeTransfer")
-    public void makeTransfer(@RequestBody OperationDto operationDto) {
-
+    public void makeTransfer(@RequestBody Long from, Long to, BigDecimal value) {
+       // operationDbService.makeTransfer(operationMapper.mapToOperation(tu nic nie pasuje));
     }
 
     @DeleteMapping("/deleteOperation")
