@@ -5,7 +5,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -14,9 +13,18 @@ import java.math.BigDecimal;
 @Table(name = "accounts")
 public class Account {
 
-    @Column(name = "customerId")
-    @NotNull
-    private Long customerId;
+    @OneToMany(
+            targetEntity = Operation.class,
+            mappedBy = "accounts",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    @ManyToOne(
+            targetEntity = Customer.class,
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+
+    )
 
     @Id
     @GeneratedValue
