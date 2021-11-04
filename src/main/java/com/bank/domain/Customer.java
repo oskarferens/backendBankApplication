@@ -4,7 +4,6 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@SuppressWarnings("ALL")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -13,12 +12,12 @@ import javax.validation.constraints.NotNull;
 @Table(name = "customers")
 public class Customer {
 
-    @OneToMany(
+    /*@OneToMany(
             targetEntity = Account.class,
             mappedBy = "customers",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
-    )
+    )*/
 
     @Id
     @GeneratedValue

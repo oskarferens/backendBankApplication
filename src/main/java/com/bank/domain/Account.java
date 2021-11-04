@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Table(name = "accounts")
 public class Account {
 
-    @OneToMany(
+    /*@OneToMany(
             targetEntity = Operation.class,
             mappedBy = "accounts",
             fetch = FetchType.LAZY,
@@ -24,7 +24,10 @@ public class Account {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
 
-    )
+    )*/
+    @Column(name = "customerId")
+    @NotNull
+    private Long customerId;
 
     @Id
     @GeneratedValue

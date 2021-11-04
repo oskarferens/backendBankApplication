@@ -3,7 +3,6 @@ package com.bank.domain;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.lang.reflect.Type;
 import java.math.BigDecimal;
 
 @NoArgsConstructor
@@ -14,12 +13,12 @@ import java.math.BigDecimal;
 @Table(name = "operations")
 public class Operation {
 
-    @ManyToOne(
+    /*@ManyToOne(
             targetEntity = Account.class,
-            mappedBy = "operations",
+            //mappedBy = "operations",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
-    )
+    )*/
 
     @Id
     @GeneratedValue

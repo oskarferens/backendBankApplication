@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountDto {
+    private Long customerId;
     private Long accountId;
     private BigDecimal balance;
     private Long bitcoinBalance;
