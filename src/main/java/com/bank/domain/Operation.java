@@ -4,6 +4,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,32 +14,35 @@ import java.math.BigDecimal;
 @Table(name = "operations")
 public class Operation {
 
-    /*@ManyToOne(
+    @ManyToOne(
             targetEntity = Account.class,
-            //mappedBy = "operations",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
-    )*/
+    )
 
     @Id
     @GeneratedValue
-    @Column(name = "operationId", unique = true)
     @NotNull
+    @Column(name = "operationId", unique = true)
     private Long operationId;
 
-    @Column(name = "value")
     @NotNull
+    @Column(name = "value")
     private BigDecimal value;
 
-    @Column(name = "internationalTransfer")
     @NotNull
+    @Column(name = "internationalTransfer")
     private double internationalTransfer;
 
-    @Column(name = "transfer")
     @NotNull
+    @Column(name = "transfer")
     private double transfer;
 
-    @Column(name = "operationComplete")
     @NotNull
+    @Column(name = "operationComplete")
     private boolean operationComplete;
+
+    @NotNull
+    @Column(name = "operationDate")
+    private LocalDate operationDate;
 }

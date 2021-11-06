@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -26,8 +28,14 @@ public class OperationController {
 
     @GetMapping("/getOperationById")
     public OperationDto findByOperationId (@RequestParam OperationDto operationDto) {
-        return operationMapper.mapToOperationDto(operationDbService.findByOperationId(operationDto.getOperationId()));
+        return operationMapper.mapToOperationDto(operationDbService.findByOperationId(operationDto.getOperationId())
+        );
+    }
 
+    @GetMapping("/getOperationDate")
+    public OperationDto getOperationDate(@RequestParam LocalDate operationDate) {
+        return operationMapper.mapToOperationDto(operationDbService.getOperationDate(operationDate)
+        );
     }
 
     @PostMapping("/createOperation")

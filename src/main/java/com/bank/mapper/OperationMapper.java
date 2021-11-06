@@ -21,7 +21,8 @@ public class OperationMapper {
                 operationDto.getValue(),
                 operationDto.getTransfer(),
                 operationDto.getInternationalTransfer(),
-                operationDto.isOperationComplete()
+                operationDto.isOperationComplete(),
+                operationDto.getOperationDate()
         );
     }
 
@@ -31,7 +32,8 @@ public class OperationMapper {
                 operation.getValue(),
                 operation.getInternationalTransfer(),
                 operation.getTransfer(),
-                operation.isOperationComplete()
+                operation.isOperationComplete(),
+                operation.getOperationDate()
         );
     }
 

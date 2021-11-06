@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-
+import java.time.LocalDate;
 
 @Setter
 @Getter
@@ -18,4 +18,5 @@ public class OperationDto {
     private double internationalTransfer;
     private double transfer;
     private boolean operationComplete;
+    private LocalDate operationDate;
 }

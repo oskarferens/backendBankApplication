@@ -13,33 +13,32 @@ import java.math.BigDecimal;
 @Table(name = "accounts")
 public class Account {
 
-    /*@OneToMany(
+    @OneToMany(
             targetEntity = Operation.class,
-            mappedBy = "accounts",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
+            mappedBy = "accounts"
     )
+
     @ManyToOne(
             targetEntity = Customer.class,
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
+    )
 
-    )*/
-    @Column(name = "customerId")
     @NotNull
+    @Column(name = "customerId")
     private Long customerId;
 
     @Id
     @GeneratedValue
-    @Column(name = "accountId", unique = true)
     @NotNull
+    @Column(name = "accountId", unique = true)
     private Long accountId;
 
-    @Column(name = "balance")
     @NotNull
+    @Column(name = "balance", scale = 2)
     private BigDecimal balance;
 
-    @Column(name = "bitcoinBalance")
     @NotNull
+    @Column(name = "bitcoinBalance")
     private Long bitcoinBalance;
 }

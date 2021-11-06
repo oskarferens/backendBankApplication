@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -26,6 +27,10 @@ public class OperationDbService {
 
     public List<Operation> getAllOperations() {
         return operationRepository.findAll();
+    }
+
+    public Operation getOperationDate(LocalDate operationDate) {
+        return operationRepository.findByOperationDate(operationDate);
     }
 
     public Operation createOperation(final Operation operation) {

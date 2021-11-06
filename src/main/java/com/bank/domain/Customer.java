@@ -12,37 +12,37 @@ import javax.validation.constraints.NotNull;
 @Table(name = "customers")
 public class Customer {
 
-    /*@OneToMany(
+    @OneToMany(
             targetEntity = Account.class,
-            mappedBy = "customers",
+            mappedBy = "customerId",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
-    )*/
+    )
 
     @Id
     @GeneratedValue
-    @Column(name = "customerId", unique = true)
     @NotNull
+    @Column(name = "customerId", unique = true)
     private Long customerId;
 
-    @Column(name = "firstName")
     @NotNull
+    @Column(name = "firstName")
     private String firstname;
 
-    @Column(name = "lastName")
     @NotNull
+    @Column(name = "lastName")
     private String lastname;
 
-    @Column(name = "email", unique = true)
     @NotNull
+    @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "password")
     @NotNull
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "isBlocked")
     @NotNull
+    @Column(name = "isBlocked")
     private Boolean isBlocked;
 }
 
