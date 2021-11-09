@@ -1,6 +1,7 @@
 package com.bank.mapper;
 
 import com.bank.domain.Account;
+import com.bank.domain.Operation;
 import com.bank.dto.AccountDto;
 import com.bank.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +13,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class AccountMapper {
-
-    private final AccountRepository accountRepository;
 
     public Account mapToAccount(final AccountDto accountDto) {
         return new Account(

@@ -28,7 +28,7 @@ public class AccountController {
     }
 
     @GetMapping("/getAccountById")
-    public AccountDto findAccountByAccountId(@RequestBody AccountDto accountDto) {
+    public AccountDto findAccountByAccountId(@PathVariable AccountDto accountDto) {
         return accountMapper.mapToAccountDto
                 (accountDbService.findAccountByAccountId(accountDto.getAccountId()));
     }

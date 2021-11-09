@@ -19,8 +19,6 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
     Customer save(Customer customer);
 
     Customer findByFirstname(String firstname);
+
+    void deleteById(Long id);
 }
-
-//Fixed, While using CrudRepository of Spring , we have to append the
-// propertyname correctly after findBy otherwise it will give you exception "No Property Found for Type”
-

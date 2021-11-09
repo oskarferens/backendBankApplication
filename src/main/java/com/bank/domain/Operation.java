@@ -14,11 +14,9 @@ import java.time.LocalDate;
 @Table(name = "operations")
 public class Operation {
 
-    @ManyToOne(
-            targetEntity = Account.class,
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
-    )
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
 
     @Id
     @GeneratedValue
@@ -45,4 +43,9 @@ public class Operation {
     @NotNull
     @Column(name = "operationDate")
     private LocalDate operationDate;
+
+    public Operation(Long operationId, BigDecimal value, double transfer,
+                     double internationalTransfer, boolean operationComplete,
+                     LocalDate operationDate) {
+    }
 }

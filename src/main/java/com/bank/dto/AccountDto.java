@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -16,4 +18,9 @@ public class AccountDto {
     private Long accountId;
     private BigDecimal balance;
     private Long bitcoinBalance;
+    private List<Long> operations = new ArrayList<>();
+
+    public AccountDto(Long customerId, Long accountId, BigDecimal balance, Long bitcoinBalance) {
+
+    }
 }

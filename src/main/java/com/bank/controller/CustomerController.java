@@ -1,5 +1,6 @@
 package com.bank.controller;
 
+import com.bank.domain.Customer;
 import com.bank.dto.CustomerDto;
 import com.bank.exception.CustomerNotFoundException;
 import com.bank.mapper.CustomerMapper;
@@ -7,6 +8,7 @@ import com.bank.service.CustomerDbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
 
 import java.util.List;
 
@@ -21,41 +23,32 @@ public class CustomerController {
     private final CustomerMapper customerMapper;
 
     @GetMapping("/getCustomers")
-    public List<CustomerDto> getAllCustomers() {
-        return customerMapper.mapToCustomerDtoList(
-                customerDbService.getAllCustomers()
-        );
+    public List<Customer> getAllCustomers() {
+        return customerDbService.getAllCustomers();
     }
 
-    @GetMapping("/getCustomerById")
-    public CustomerDto getCustomerById (@RequestParam Long customerId) {
-        return customerMapper.mapToCustomerDto(
-                customerDbService.getCustomerById(customerId)
-        );
+    @GetMapping("/getCustomerById/{customerId}")
+    public Customer getCustomerById (@PathVariable Long customerId) {
+        return customerDbService.getCustomerById(customerId);
     }
 
     @GetMapping("/getCustomerByName/{firstName}")
-    public CustomerDto getCustomerByFirstname (@PathVariable String firstName) {
-        return customerMapper.mapToCustomerDto(customerDbService.getCustomerByFirstname(firstName)
-        );
+    public Customer getCustomerByFirstname (@PathVariable String firstName) {
+        return customerDbService.getCustomerByFirstname(firstName);
     }
 
-    @PostMapping("/createCustomer")
-    public void createCustomer(@RequestBody CustomerDto customerDto) {
-        customerDbService.createCustomer(
-                customerMapper.mapToCustomer(customerDto)
-        );
+    @PostMapping(value = "/createCustomer", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createCustomer(@RequestBody Customer customer) {
+        customerDbService.saveCustomer(customer);
     }
 
     @PutMapping("/updateCustomer")
-    public CustomerDto updateCustomer(@RequestBody CustomerDto customerDto) {
-        return customerMapper.mapToCustomerDto(customerDbService.saveCustomer(customerMapper.mapToCustomer(customerDto)
-                )
-        );
+    public void updateCustomer(@RequestBody Customer customer) {
+        customerDbService.saveCustomer(customer);
     }
 
     @PatchMapping("/blockCustomer")
-    public void blockUser(@RequestParam Long customerId) throws CustomerNotFoundException {
+    public void blockCustomer(@RequestParam Long customerId) throws CustomerNotFoundException {
         customerDbService.blockCustomer(customerId);
     }
 
