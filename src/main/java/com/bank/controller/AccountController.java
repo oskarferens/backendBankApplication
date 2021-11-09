@@ -1,5 +1,6 @@
 package com.bank.controller;
 
+import com.bank.domain.Account;
 import com.bank.dto.AccountDto;
 import com.bank.mapper.AccountMapper;
 import com.bank.service.AccountDbService;
@@ -21,23 +22,26 @@ public class AccountController {
     private final AccountMapper accountMapper;
 
     @GetMapping("/getAllAccounts")
-    public List<AccountDto> getAllAccounts() {
-        return accountMapper.mapToAccountDtoList(
-                accountDbService.getAllAccounts()
-        );
+    public List<Account> getAllAccounts() {
+        return accountDbService.getAllAccounts();
     }
 
-    @GetMapping("/getAccountById")
-    public AccountDto findAccountByAccountId(@PathVariable AccountDto accountDto) {
-        return accountMapper.mapToAccountDto
-                (accountDbService.findAccountByAccountId(accountDto.getAccountId()));
+    @GetMapping("/getAccountById/{accountId}")
+    public Account getAccountById(@PathVariable Long accountId) {
+        return accountDbService.getAccountById(accountId);
     }
-    //------------------------------------------------------------
-    @GetMapping("/getBalance/{balance}")
+
+
+
+
+    @GetMapping("/getBalance/{balance}")   //Musi byc getBalanceByAccocuntID
     public AccountDto getBalance(@RequestBody BigDecimal balance) {
         return accountMapper.mapToAccountDto(accountDbService.getBalance(balance));
     }
-    //-------------------------------------------------------------
+
+
+
+
     @PostMapping("/createAccount")
     public void createAccount(@RequestBody AccountDto accountDto) {
         accountDbService.createAccount(

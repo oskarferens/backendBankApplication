@@ -46,7 +46,7 @@ public class Account {
     public Account(Long customerId, Long accountId, BigDecimal balance, Long bitcoinBalance) {
     }
 
-    public Customer getCustomer() {
+    public Customer getCustomerById() {
         return customer;
     }
 

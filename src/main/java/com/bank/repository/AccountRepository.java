@@ -5,15 +5,17 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AccountRepository extends CrudRepository<Account, Long> {
 
+    @Override
     List<Account> findAll();
 
-    Account findAccountByAccountId (Long accountId);
+    Optional<Account> findById(Long id);
 
-    Account findByBalance (BigDecimal balance);
+    Account findBalanceByAccountId (BigDecimal balance);
 
     @Override
     Account save (Account account);

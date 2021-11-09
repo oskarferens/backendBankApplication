@@ -1,9 +1,7 @@
 package com.bank.controller;
 
 import com.bank.domain.Customer;
-import com.bank.dto.CustomerDto;
 import com.bank.exception.CustomerNotFoundException;
-import com.bank.mapper.CustomerMapper;
 import com.bank.service.CustomerDbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +17,6 @@ public class CustomerController {
 
     @Autowired
     private final CustomerDbService customerDbService;
-    @Autowired
-    private final CustomerMapper customerMapper;
 
     @GetMapping("/getCustomers")
     public List<Customer> getAllCustomers() {
@@ -56,7 +52,6 @@ public class CustomerController {
     public void deleteCustomer(@RequestParam Long customerId) {
         customerDbService.deleteCustomerById(customerId);
     }
-
 }
 
 

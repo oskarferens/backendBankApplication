@@ -1,6 +1,7 @@
 package com.bank.service;
 
 import com.bank.domain.Account;
+import com.bank.exception.AccountNotFoundException;
 import com.bank.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,12 +18,13 @@ public class AccountDbService {
         return accountRepository.findAll();
     }
 
-    public Account findAccountByAccountId(Long accountId) {
-        return accountRepository.findAccountByAccountId(accountId);
+    public Account getAccountById(Long accountId) {
+        return accountRepository.findById(accountId) .orElseThrow(() ->
+                new AccountNotFoundException("Account with id: " + accountId + "doesn't exsist"));
     }
 
     public Account getBalance(BigDecimal balance) {
-        return accountRepository.findByBalance(balance);
+        return accountRepository.findBalanceByAccountId(balance);
     }
 
     public Account createAccount(Account account) {

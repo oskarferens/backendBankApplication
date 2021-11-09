@@ -41,24 +41,14 @@ public class OperationDbService {
         operationRepository.deleteById(operationId);
     }
 
-    public void makeTransfer(Long from, Long to, BigDecimal value) {
-        Account actFrom = accountRepository.findAccountByAccountId(from);
-        Account actTo = accountRepository.findAccountByAccountId(to);
+    /*public void makeTransfer(Long from, Long to, BigDecimal value) {
+        Account actFrom = accountRepository.findById(from);
+        Account actTo = accountRepository.findById(to);
         actFrom.setBalance(actFrom.getBalance().add(value));
         actTo.setBalance(actTo.getBalance().add(value));
         accountRepository.save(actFrom);
         accountRepository.save(actTo);
-    }
+
+        Po zmianie w repository Obiektu Account na Optional nie dziala.
+    }*/
 }
-
-//A tu przekazujesz takie parametry jakie zdefiniowałeś w dbService w tej metodzie
-
-//Musisz wyszukać account po id klienta od którego robisz przelew.
-// Potem zmodyfikować stan tego accounta (pobrać kasę) i zapisać.
-// Następnie wyszukac docelowego, zmodyfikować stan konta (dodac kasę) i zapisać.
-
-// Operations service bedzie mialo metode makeTransfer, ktora zrobi przelew w podanej walucie.
-// metoda napisana w controllerze ma wywolac z operations service metode makeTransfer i
-// przekazac te same parametry.
-// makeTransfer w OperationService pobierze kurs waluty przelewu jezeli jest inna niz
-// waluta rachunku i przeliczy kwote. I kurs pobierze z ExchangeClient z metody currency.
