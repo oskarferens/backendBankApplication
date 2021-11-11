@@ -23,8 +23,8 @@ public class AccountDbService {
                 new AccountNotFoundException("Account with id: " + accountId + "doesn't exsist"));
     }
 
-    public Account getBalance(BigDecimal balance) {
-        return accountRepository.findBalanceByAccountId(balance);
+    public BigDecimal getBalance(Long accountId) {
+        return accountRepository.findByAccountId(accountId);
     }
 
     public Account createAccount(Account account) {

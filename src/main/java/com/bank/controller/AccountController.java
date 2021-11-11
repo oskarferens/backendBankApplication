@@ -6,6 +6,7 @@ import com.bank.mapper.AccountMapper;
 import com.bank.service.AccountDbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -31,22 +32,14 @@ public class AccountController {
         return accountDbService.getAccountById(accountId);
     }
 
-
-
-
-    @GetMapping("/getBalance/{balance}")   //Musi byc getBalanceByAccocuntID
-    public AccountDto getBalance(@RequestBody BigDecimal balance) {
-        return accountMapper.mapToAccountDto(accountDbService.getBalance(balance));
+    @GetMapping("/getBalance")
+    public BigDecimal getBalance(@RequestParam Long accountId) {
+        return accountDbService.getBalance(accountId);
     }
 
-
-
-
-    @PostMapping("/createAccount")
-    public void createAccount(@RequestBody AccountDto accountDto) {
-        accountDbService.createAccount(
-                accountMapper.mapToAccount(accountDto)
-        );
+    @PostMapping(value = "/createAccount", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createAccount(@RequestBody Account account) {
+        accountDbService.createAccount(account);
     }
 
     @PutMapping("/updateAccount")

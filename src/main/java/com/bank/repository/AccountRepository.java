@@ -15,7 +15,7 @@ public interface AccountRepository extends CrudRepository<Account, Long> {
 
     Optional<Account> findById(Long id);
 
-    Account findBalanceByAccountId (BigDecimal balance);
+    BigDecimal findByAccountId (Long accountId);
 
     @Override
     Account save (Account account);
