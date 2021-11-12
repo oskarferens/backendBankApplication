@@ -21,6 +21,5 @@ public class AccountDto {
     private List<Long> operations = new ArrayList<>();
 
     public AccountDto(Long customerId, Long accountId, BigDecimal balance, Long bitcoinBalance) {
-
     }
 }

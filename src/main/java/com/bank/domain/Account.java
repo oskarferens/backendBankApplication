@@ -36,7 +36,7 @@ public class Account {
     private Long customerId;
 
     @NotNull
-    @Column(name = "balance", scale = 2)
+    @Column(name = "balance")
     private BigDecimal balance;
 
     @NotNull
