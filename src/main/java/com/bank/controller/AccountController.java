@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/account")
@@ -40,7 +39,7 @@ public class AccountController {
 
     @PostMapping(value = "/createAccount", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createAccount(@RequestBody Account account) {
-        accountDbService.createAccount(account);
+        accountDbService.saveAccount(account);
     }
 
     @PutMapping("/updateAccount")

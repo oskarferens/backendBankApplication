@@ -13,4 +13,9 @@ public interface AccountRepository extends CrudRepository<Account, Long> {
     List<Account> findAll();
 
     Optional<Account> findById(Long id);
+
+    @Override
+    Account save(Account account);
+
+
 }

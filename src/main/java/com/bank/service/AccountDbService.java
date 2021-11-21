@@ -1,6 +1,7 @@
 package com.bank.service;
 
 import com.bank.domain.Account;
+import com.bank.domain.Customer;
 import com.bank.exception.AccountNotFoundException;
 import com.bank.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,10 +29,6 @@ public class AccountDbService {
     public BigDecimal getBalance(Long accountId) {
         Optional<Account> account = accountRepository.findById(accountId);
          return account.get().getBalance();
-    }
-
-    public Account createAccount(Account account) {
-        return accountRepository.save(account);
     }
 
     public Account saveAccount(final Account account) {

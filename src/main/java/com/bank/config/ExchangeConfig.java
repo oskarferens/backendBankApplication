@@ -4,9 +4,9 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component
 @Getter
-public class ExchangeConfig{
-    @Value("${exchange.api.endpoint.prod}")
-    private String exchangeApiEndpoint;
+@Component
+public class ExchangeConfig {
+    @Value("${nbp.api.endpoint.prod}")
+    private String nbpApiEndpoint;
 }
