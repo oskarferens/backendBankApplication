@@ -8,6 +8,8 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,11 +20,7 @@ public class BitcoinService {
     @Autowired
     BitcoinClient bitcoinClient;
 
-    /*public double showBitcoinValue() {
-        Double bitcoinValue = bitcoinClient.getBitcoin()
-                .stream()
-                .filter(price -> price.getPrice().equals("BTC"))
-                .findFirst().get().getPrice();
-        return bitcoinValue;
-    }*/
+    public BigDecimal showBTC() {
+       return bitcoinClient.getBitcoin();
+    }
 }

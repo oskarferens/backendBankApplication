@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1")
@@ -21,7 +23,7 @@ public class BitcoinController {
     BitcoinService bitcoinService;
 
     @GetMapping(value = "/BTC")
-    public Double getBTC() {
-        return bitcoinClient.getBitcoin();
+    public BigDecimal getBTC() {
+        return bitcoinService.showBTC();
     }
 }
