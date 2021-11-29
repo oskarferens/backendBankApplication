@@ -1,4 +1,4 @@
-package com.bank.config;
+package com.bank.controller;
 
 import com.bank.client.ExchangeClient;
 import com.bank.service.ExchangeService;

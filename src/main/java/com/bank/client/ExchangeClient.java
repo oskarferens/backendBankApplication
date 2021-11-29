@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -14,13 +15,14 @@ import java.net.URI;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Component
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class ExchangeClient {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExchangeClient.class);
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
 
     public List<Rates> getAllCurrencies() {
 

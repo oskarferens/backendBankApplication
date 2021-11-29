@@ -11,17 +11,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties (ignoreUnknown = true)
 public class RatesDto {
-
-    @JsonProperty("PLN")
-    private double PLN;
-
-    @JsonProperty("SEK")
-    private double SEK;
-
-    @JsonProperty("USD")
-    private double USD;
-
-    @JsonProperty("all")
-    private double all;
-
+    @JsonProperty("currency")
+    String currency;
+    @JsonProperty("code")
+    String code;
+    @JsonProperty("bid")
+    Double bid;
+    @JsonProperty("ask")
+    Double ask;
 }
