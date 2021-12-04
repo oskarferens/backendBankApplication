@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface OperationRepository extends CrudRepository<Operation, Long> {
@@ -13,11 +14,10 @@ public interface OperationRepository extends CrudRepository<Operation, Long> {
     @Override
     List<Operation> findAll();
 
-    Operation findByOperationId(Long operationId);
-
-    @Override
-    Operation save(Operation operation);
+    Optional<Operation> findById(Long operationId);
 
     Operation findByOperationDate(LocalDate date);
 
+    @Override
+    Operation save(Operation operation);
 }

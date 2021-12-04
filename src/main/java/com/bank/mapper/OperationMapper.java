@@ -19,10 +19,12 @@ public class OperationMapper {
         return new Operation(
                 operationDto.getOperationId(),
                 operationDto.getValue(),
-                operationDto.getTransfer(),
-                operationDto.getInternationalTransfer(),
+                operationDto.isTransfer(),
+                operationDto.isInternationalTransfer(),
                 operationDto.isOperationComplete(),
-                operationDto.getOperationDate()
+                operationDto.getOperationDate(),
+                operationDto.getAccountFrom(),
+                operationDto.getAccountTo()
         );
     }
 
@@ -30,10 +32,12 @@ public class OperationMapper {
         return new OperationDto(
                 operation.getOperationId(),
                 operation.getValue(),
-                operation.getInternationalTransfer(),
-                operation.getTransfer(),
+                operation.isInternationalTransfer(),
+                operation.isTransfer(),
                 operation.isOperationComplete(),
-                operation.getOperationDate()
+                operation.getOperationDate(),
+                operation.getAccountFrom(),
+                operation.getAccountTo()
         );
     }
 
@@ -42,5 +46,4 @@ public class OperationMapper {
                 .map(this::mapToOperationDto)
                 .collect(Collectors.toList());
     }
-
 }

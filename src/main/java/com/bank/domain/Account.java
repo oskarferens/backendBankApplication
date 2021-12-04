@@ -14,21 +14,10 @@ import java.util.List;
 @Entity
 @Table(name = "accounts")
 public class Account {
-
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private Customer customer;
-
-    @OneToMany(
-            targetEntity=Operation.class,
-            mappedBy = "account"
-    )
-    private List<Operation> operations = new ArrayList<>();
-
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "accountId", unique = true)
+    @Column(name = "account_id", unique = true)
     private Long accountId;
 
     @NotNull
@@ -53,6 +42,16 @@ public class Account {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private Customer customer;
+
+    @OneToMany(
+            targetEntity=Operation.class,
+            mappedBy = "account"
+    )
+    private List<Operation> operations = new ArrayList<>();
 }
 
 

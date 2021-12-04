@@ -14,7 +14,6 @@ public class EmailScheduler {
 
     private static final String SUBJECT = "BankApplication: payment confirmation";
     private final EmailService emailService;
-    private final OperationRepository operationRepository;
     private final AdminConfig adminConfig;
 
     @Scheduled

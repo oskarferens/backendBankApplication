@@ -1,59 +1,52 @@
 package com.bank.controller;
 
-import com.bank.dto.OperationDto;
+import com.bank.domain.Operation;
 import com.bank.mapper.OperationMapper;
 import com.bank.service.OperationDbService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/operation")
+@RequestMapping("/v1/operation")
 @RequiredArgsConstructor
 public class OperationController {
 
     private final OperationDbService operationDbService;
-    private final OperationMapper operationMapper;
 
-    @GetMapping("/getOperations")
-    public List<OperationDto> getAllOperations() {
-        return operationMapper.mapToOperationDtoList(
-                operationDbService.getAllOperations()
-        );
+    @GetMapping("/getAllOperations")
+    public List<Operation> getAllOperations() {
+        return operationDbService.getAllOperations();
     }
 
-    @GetMapping("/getOperationById")
-    public OperationDto findByOperationId (@RequestParam OperationDto operationDto) {
-        return operationMapper.mapToOperationDto(operationDbService.findByOperationId(operationDto.getOperationId())
-        );
+    @GetMapping("/getOperationById/{operationId}")
+    public Operation findByOperationId(@PathVariable Long operationId) {
+        return operationDbService.getOperationId(operationId);
     }
 
     @GetMapping("/getOperationDate")
-    public OperationDto getOperationDate(@RequestParam LocalDate operationDate) {
-        return operationMapper.mapToOperationDto(operationDbService.getOperationDate(operationDate)
-        );
+    public Operation getOperationDate(@RequestParam LocalDate operationDate) {
+        return operationDbService.getOperationDate(operationDate);
     }
 
-    @PostMapping("/createOperation")
-    public void createOperation(@RequestBody OperationDto operationDto) {
-        operationDbService.createOperation(
-                operationMapper.mapToOperation(operationDto)
-        );
+    @PostMapping(value = "/createOperation", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createOperation(@RequestBody Operation operation) {
+        operationDbService.saveOperation(operation);
     }
 
-    @PostMapping("/makeTransfer")
-    public void makeTransfer(@RequestBody Long from, Long to, BigDecimal value) {
-       // operationDbService.makeTransfer(operationMapper.mapToOperation(tu nic nie pasuje));
+    @PostMapping(value= "/makeTransfer")
+    public void makeTransfer(@RequestParam Long accountFrom, @RequestParam Long accountTo, @RequestParam BigDecimal value) {
+        operationDbService.makeTransfer(accountFrom,accountTo,value);
+        //operationDbService.saveOperation(new Operation());
     }
 
     @DeleteMapping("/deleteOperation")
-    public void deleteOperationById(@RequestParam Long operationId) {
+    public void deleteOperation(@RequestParam Long operationId) {
         operationDbService.deleteOperationById(operationId);
     }
-
-
 }

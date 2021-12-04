@@ -14,9 +14,16 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class OperationDto {
     private Long operationId;
+    private Long accountFrom;
+    private Long accountTo;
     private BigDecimal value;
-    private double internationalTransfer;
-    private double transfer;
+    private boolean internationalTransfer;
+    private boolean transfer;
     private boolean operationComplete;
     private LocalDate operationDate;
+
+    public OperationDto(Long operationId, BigDecimal value,
+                        boolean internationalTransfer, boolean transfer, boolean operationComplete,
+                        LocalDate operationDate, Long accountFrom, Long accountTo) {
+    }
 }

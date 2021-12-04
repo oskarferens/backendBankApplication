@@ -6,23 +6,23 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "operations")
 public class Operation {
-
-    @ManyToOne
-    @JoinColumn(name = "account_id")
-    private Account account;
-
     @Id
     @GeneratedValue
     @NotNull
     @Column(name = "operationId", unique = true)
     private Long operationId;
+
+    @Column(name = "accountFrom")
+    private Long accountFrom;
+
+    @Column(name = "accountTo")
+    private Long accountTo;
 
     @NotNull
     @Column(name = "value")
@@ -30,11 +30,11 @@ public class Operation {
 
     @NotNull
     @Column(name = "internationalTransfer")
-    private double internationalTransfer;
+    private boolean internationalTransfer;
 
     @NotNull
     @Column(name = "transfer")
-    private double transfer;
+    private boolean transfer;
 
     @NotNull
     @Column(name = "operationComplete")
@@ -44,8 +44,13 @@ public class Operation {
     @Column(name = "operationDate")
     private LocalDate operationDate;
 
-    public Operation(Long operationId, BigDecimal value, double transfer,
-                     double internationalTransfer, boolean operationComplete,
-                     LocalDate operationDate) {
+    public Operation (Long operationId, BigDecimal value, boolean transfer,
+                     boolean internationalTransfer, boolean operationComplete,
+                     LocalDate operationDate,Long accountFrom, Long accountTo) {
     }
+
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
+
 }
