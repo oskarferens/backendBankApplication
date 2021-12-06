@@ -21,10 +21,6 @@ public class Account {
     private Long accountId;
 
     @NotNull
-    @Column(name = "customerId")
-    private Long customerId;
-
-    @NotNull
     @Column(name = "balance")
     private BigDecimal balance;
 
@@ -32,26 +28,19 @@ public class Account {
     @Column(name = "bitcoinBalance")
     private Long bitcoinBalance;
 
-    public Account(Long customerId, Long accountId, BigDecimal balance, Long bitcoinBalance) {
-    }
-
-    public Customer getCustomerById() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public Account( Long accountId, BigDecimal balance, Long bitcoinBalance) {
     }
 
     @ManyToOne
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
 
     @OneToMany(
             targetEntity=Operation.class,
-            mappedBy = "account"
+            mappedBy = "account",
+            fetch = FetchType.LAZY
     )
-    private List<Operation> operations = new ArrayList<>();
+    private List<Operation> operations;
 }
 
 

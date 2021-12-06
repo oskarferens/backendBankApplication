@@ -14,12 +14,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountDto {
-    private Long customerId;
     private Long accountId;
     private BigDecimal balance;
     private Long bitcoinBalance;
     private List<Long> operations = new ArrayList<>();
 
-    public AccountDto(Long customerId, Long accountId, BigDecimal balance, Long bitcoinBalance) {
+    public AccountDto(Long accountId, BigDecimal balance, Long bitcoinBalance) {
     }
 }

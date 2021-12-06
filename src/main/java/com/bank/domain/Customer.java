@@ -14,12 +14,6 @@ import java.util.List;
 @Table(name = "customers")
 public class Customer {
 
-    @OneToMany(
-            targetEntity=Account.class,
-            mappedBy = "customer"
-    )
-    private List<Account> accounts = new ArrayList<>();
-
     @Id
     @GeneratedValue
     @NotNull
@@ -56,5 +50,12 @@ public class Customer {
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
     }
+
+    @OneToMany(
+            targetEntity=Account.class,
+            mappedBy = "customer",
+            fetch = FetchType.LAZY
+    )
+    private List<Account> accounts;
 }
 
