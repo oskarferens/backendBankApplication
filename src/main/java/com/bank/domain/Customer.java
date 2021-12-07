@@ -3,7 +3,6 @@ package com.bank.domain;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -11,9 +10,8 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "customers")
+@Table(name = "customer")
 public class Customer {
-
     @Id
     @GeneratedValue
     @NotNull
@@ -40,22 +38,29 @@ public class Customer {
     @Column(name = "isBlocked")
     private Boolean isBlocked;
 
-    public Customer(Long customerId, String firstName, String lastName, String email, String password, Boolean isBlocked) {
+    public Customer(String firstName, String lastName, String email, String password, Boolean isBlocked) {
     }
 
-    public List<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
-    }
-
-    @OneToMany(
-            targetEntity=Account.class,
-            mappedBy = "customer",
-            fetch = FetchType.LAZY
-    )
+    @OneToMany(mappedBy = "customer")
     private List<Account> accounts;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

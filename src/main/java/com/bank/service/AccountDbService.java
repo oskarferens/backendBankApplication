@@ -1,7 +1,6 @@
 package com.bank.service;
 
 import com.bank.domain.Account;
-import com.bank.domain.Customer;
 import com.bank.exception.AccountNotFoundException;
 import com.bank.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;

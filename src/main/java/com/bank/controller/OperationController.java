@@ -42,7 +42,6 @@ public class OperationController {
     @PostMapping(value= "/makeTransfer")
     public void makeTransfer(@RequestParam Long accountFrom, @RequestParam Long accountTo, @RequestParam BigDecimal value) {
         operationDbService.makeTransfer(accountFrom,accountTo,value);
-        //operationDbService.saveOperation(new Operation());
     }
 
     @DeleteMapping("/deleteOperation")

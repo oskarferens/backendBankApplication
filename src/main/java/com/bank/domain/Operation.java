@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "operations")
+@Table(name = "operation")
 public class Operation {
     @Id
     @GeneratedValue
@@ -18,9 +18,11 @@ public class Operation {
     @Column(name = "operationId", unique = true)
     private Long operationId;
 
+    @NotNull
     @Column(name = "accountFrom")
     private Long accountFrom;
 
+    @NotNull
     @Column(name = "accountTo")
     private Long accountTo;
 
@@ -28,15 +30,12 @@ public class Operation {
     @Column(name = "value")
     private BigDecimal value;
 
-    @NotNull
     @Column(name = "internationalTransfer")
     private boolean internationalTransfer;
 
-    @NotNull
     @Column(name = "transfer")
     private boolean transfer;
 
-    @NotNull
     @Column(name = "operationComplete")
     private boolean operationComplete;
 
@@ -44,13 +43,33 @@ public class Operation {
     @Column(name = "operationDate")
     private LocalDate operationDate;
 
-    public Operation (Long operationId, BigDecimal value, boolean transfer,
-                     boolean internationalTransfer, boolean operationComplete,
-                     LocalDate operationDate,Long accountFrom, Long accountTo) {
+    public Operation (Long accountFrom, Long accountTo,
+                      BigDecimal value, boolean transfer, boolean internationalTransfer,
+                      boolean operationComplete, LocalDate operationDate) {
     }
-
     @ManyToOne
-    @JoinColumn(name = "account_id")
+    @JoinColumn(name = "accountId")
     private Account account;
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

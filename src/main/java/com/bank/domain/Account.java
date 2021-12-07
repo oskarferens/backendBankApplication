@@ -4,7 +4,6 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -12,12 +11,12 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "accounts")
+@Table(name = "account")
 public class Account {
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "account_id", unique = true)
+    @Column(name = "accountid", unique = true)
     private Long accountId;
 
     @NotNull
@@ -28,20 +27,37 @@ public class Account {
     @Column(name = "bitcoinBalance")
     private Long bitcoinBalance;
 
-    public Account( Long accountId, BigDecimal balance, Long bitcoinBalance) {
+    public Account(Long accountId, BigDecimal balance, Long bitcoinBalance) {
     }
 
-    @ManyToOne
-    @JoinColumn(name = "CUSTOMER_ID")
-    private Customer customer;
-
-    @OneToMany(
-            targetEntity=Operation.class,
-            mappedBy = "account",
-            fetch = FetchType.LAZY
-    )
+    @OneToMany(mappedBy = "account")
     private List<Operation> operations;
+
+    @ManyToOne
+    @JoinColumn(name = "customerId")
+    private Customer customer;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

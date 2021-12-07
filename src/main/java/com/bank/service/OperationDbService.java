@@ -44,11 +44,15 @@ public class OperationDbService {
         Account accountFrom = accountRepository.findById(idFrom).orElseThrow(() -> new AccountNotFoundException("Account with id: " + idFrom + " not found"));
         Account accountTo = accountRepository.findById(idTo).orElseThrow(() -> new AccountNotFoundException("Account with id: " + idTo + " not found"));;
         accountFrom.setBalance(accountFrom.getBalance().add(value));
-        accountTo.setBalance(accountTo.getBalance().add(value));
+        accountTo.setBalance(accountTo.getBalance().add(value));  //zamienic to na metody ze streama zeby dzialalo
         accountRepository.save(accountFrom);
         accountRepository.save(accountTo);
-        Operation operation = new Operation(null,value,true,false,true,LocalDate.now(),accountFrom.getAccountId(),accountTo.getAccountId());
-        operationRepository.save(operation);
+
+        Operation newOperation = new Operation(idFrom,idTo,new BigDecimal(100.00),true,false,true,LocalDate.now());
+        operationRepository.save(newOperation);                            // tylko ta linijka wywala blad
+
+        //final List<Operation> operations = List.of(operations);
+        //operationRepository.save(new Operation(idFrom,idTo,new BigDecimal(100.00),true,false,true,LocalDate.now()));
     }
 
 }

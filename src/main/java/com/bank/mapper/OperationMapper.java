@@ -17,14 +17,13 @@ public class OperationMapper {
 
     public Operation mapToOperation(final OperationDto operationDto) {
         return new Operation(
-                operationDto.getOperationId(),
+                operationDto.getAccountFrom(),
+                operationDto.getAccountTo(),
                 operationDto.getValue(),
                 operationDto.isTransfer(),
                 operationDto.isInternationalTransfer(),
                 operationDto.isOperationComplete(),
-                operationDto.getOperationDate(),
-                operationDto.getAccountFrom(),
-                operationDto.getAccountTo()
+                operationDto.getOperationDate()
         );
     }
 
