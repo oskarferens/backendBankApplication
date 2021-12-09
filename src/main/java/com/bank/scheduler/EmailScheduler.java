@@ -2,7 +2,6 @@ package com.bank.scheduler;
 
 import com.bank.config.AdminConfig;
 import com.bank.domain.Mail;
-import com.bank.repository.OperationRepository;
 import com.bank.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -16,7 +15,7 @@ public class EmailScheduler {
     private final EmailService emailService;
     private final AdminConfig adminConfig;
 
-    @Scheduled
+    @Scheduled(cron = "0 0 10 * * *")
     public void sendInformationEmail() {
         //boolean paymentSent = operationRepository.;
         emailService.send(
@@ -24,7 +23,7 @@ public class EmailScheduler {
                         adminConfig.getAdminMail(),
                         SUBJECT,
                         "Payment sent.",
-                        null
+                        "juniordev8998@gmail.com"
                 )
         );
     }

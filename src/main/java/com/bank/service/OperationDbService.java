@@ -40,6 +40,10 @@ public class OperationDbService {
         operationRepository.deleteById(operationId);
     }
 
+    public void sendEmailIfTransactionIsFinalized (boolean operationComplete) {
+
+    }
+
     public void makeTransfer(Long idFrom, Long idTo, BigDecimal value) {
         Account accountFrom = accountRepository.findById(idFrom).orElseThrow(() -> new AccountNotFoundException("Account with id: " + idFrom + " not found"));
         Account accountTo = accountRepository.findById(idTo).orElseThrow(() -> new AccountNotFoundException("Account with id: " + idTo + " not found"));;
