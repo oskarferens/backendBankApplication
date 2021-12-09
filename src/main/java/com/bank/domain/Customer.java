@@ -38,11 +38,16 @@ public class Customer {
     @Column(name = "isBlocked")
     private Boolean isBlocked;
 
-    public Customer(String firstName, String lastName, String email, String password, Boolean isBlocked) {
-    }
-
     @OneToMany(mappedBy = "customer")
     private List<Account> accounts;
+
+    public Customer(String firstname, String lastname, String email, String password, Boolean isBlocked) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.isBlocked = isBlocked;
+    }
 }
 
 

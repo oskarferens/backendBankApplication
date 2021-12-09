@@ -23,11 +23,13 @@ public class Account {
     @Column(name = "balance")
     private BigDecimal balance;
 
-    @NotNull
     @Column(name = "bitcoinBalance")
     private Long bitcoinBalance;
 
     public Account(Long accountId, BigDecimal balance, Long bitcoinBalance) {
+        this.accountId = accountId;
+        this.balance = balance;
+        this.bitcoinBalance = bitcoinBalance;
     }
 
     @OneToMany(mappedBy = "account")

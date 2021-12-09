@@ -6,6 +6,7 @@ import com.bank.exception.AccountNotFoundException;
 import com.bank.repository.AccountRepository;
 import com.bank.repository.OperationRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -16,8 +17,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OperationDbService {
 
-    private final OperationRepository operationRepository;
-    private final AccountRepository accountRepository;
+    @Autowired
+    OperationRepository operationRepository;
+    @Autowired
+    AccountRepository accountRepository;
 
     public List<Operation> getAllOperations() {
         return operationRepository.findAll();
@@ -40,10 +43,6 @@ public class OperationDbService {
         operationRepository.deleteById(operationId);
     }
 
-    public void sendEmailIfTransactionIsFinalized (boolean operationComplete) {
-
-    }
-
     public void makeTransfer(Long idFrom, Long idTo, BigDecimal value) {
         Account accountFrom = accountRepository.findById(idFrom).orElseThrow(() -> new AccountNotFoundException("Account with id: " + idFrom + " not found"));
         Account accountTo = accountRepository.findById(idTo).orElseThrow(() -> new AccountNotFoundException("Account with id: " + idTo + " not found"));;
@@ -51,12 +50,8 @@ public class OperationDbService {
         accountTo.setBalance(accountTo.getBalance().add(value));  //zamienic to na metody ze streama zeby dzialalo
         accountRepository.save(accountFrom);
         accountRepository.save(accountTo);
-
-        Operation newOperation = new Operation(idFrom,idTo,new BigDecimal(100.00),true,false,true,LocalDate.now());
-        operationRepository.save(newOperation);                            // tylko ta linijka wywala blad
-
-        //final List<Operation> operations = List.of(operations);
-        //operationRepository.save(new Operation(idFrom,idTo,new BigDecimal(100.00),true,false,true,LocalDate.now()));
+        Operation nextOperation = new Operation(idFrom,idTo,value,false,true,true,LocalDate.now());
+        operationRepository.save(nextOperation);
     }
 
 }

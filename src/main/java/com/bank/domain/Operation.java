@@ -43,10 +43,18 @@ public class Operation {
     @Column(name = "operationDate")
     private LocalDate operationDate;
 
-    public Operation (Long accountFrom, Long accountTo,
-                      BigDecimal value, boolean transfer, boolean internationalTransfer,
-                      boolean operationComplete, LocalDate operationDate) {
+    public Operation(Long accountFrom, Long accountTo, BigDecimal value,
+                     boolean internationalTransfer, boolean transfer, boolean operationComplete,
+                     LocalDate operationDate) {
+        this.accountFrom = accountFrom;
+        this.accountTo = accountTo;
+        this.value = value;
+        this.internationalTransfer = internationalTransfer;
+        this.transfer = transfer;
+        this.operationComplete = operationComplete;
+        this.operationDate = operationDate;
     }
+
     @ManyToOne
     @JoinColumn(name = "accountId")
     private Account account;

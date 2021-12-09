@@ -18,6 +18,5 @@ public interface OperationRepository extends CrudRepository<Operation, Long> {
 
     Operation findByOperationDate(LocalDate date);
 
-    @Override
-    Operation save(Operation operation);
+    //List<Operation> findByFinalizedOperation(boolean operationComplete);
 }
