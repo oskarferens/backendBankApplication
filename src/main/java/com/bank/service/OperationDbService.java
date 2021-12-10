@@ -35,7 +35,7 @@ public class OperationDbService {
         return operationRepository.findByOperationDate(operationDate);
     }
 
-    public Operation saveOperation(final Operation operation) {
+    public Operation createOperation(Operation operation) {
         return operationRepository.save(operation);
     }
 

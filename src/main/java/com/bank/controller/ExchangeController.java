@@ -1,6 +1,7 @@
 package com.bank.controller;
 
 import com.bank.client.ExchangeClient;
+import com.bank.facade.ExchangeFacade;
 import com.bank.service.ExchangeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,23 +16,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class ExchangeController {
 
-    @Autowired
-    ExchangeClient exchangeClient;
-    @Autowired
-    ExchangeService exchangeservice;
+    private final ExchangeFacade exchangeFacade;
 
     @GetMapping(value = "/EUR")
     public Double getEur() {
-        return exchangeservice.showEURValue();
+        return exchangeFacade.getEuro();
     }
 
     @GetMapping(value = "/USD")
     public Double getUsd() {
-        return exchangeservice.showUSDValue();
+        return exchangeFacade.getUSD();
     }
 
     @GetMapping(value = "/SEK")
     public Double getSek() {
-        return exchangeservice.showSEKValue();
+        return exchangeFacade.getSEK();
     }
 }

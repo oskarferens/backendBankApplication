@@ -30,7 +30,7 @@ public class AccountDbService {
          return account.get().getBalance();
     }
 
-    public Account saveAccount(final Account account) {
+    public Account saveAccount(Account account) {
         return accountRepository.save(account);
     }
 

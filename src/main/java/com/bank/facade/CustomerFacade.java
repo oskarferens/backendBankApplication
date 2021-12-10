@@ -16,6 +16,7 @@ public class CustomerFacade {
     public List<Customer> getAllCustomers() {
         return customerDbService.getAllCustomers();
     }
+
     public Customer getCustomerByFirstname(String firstname) {
         return customerDbService.getCustomerByFirstname(firstname);
     }

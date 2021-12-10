@@ -1,10 +1,8 @@
 package com.bank.controller;
 
 import com.bank.domain.Operation;
-import com.bank.mapper.OperationMapper;
-import com.bank.service.OperationDbService;
+import com.bank.facade.OperationFacade;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,35 +15,35 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OperationController {
 
-    private final OperationDbService operationDbService;
+    private final OperationFacade operationFacade;
 
     @GetMapping("/getAllOperations")
     public List<Operation> getAllOperations() {
-        return operationDbService.getAllOperations();
+        return operationFacade.getAllOperations();
     }
 
     @GetMapping("/getOperationById/{operationId}")
     public Operation findByOperationId(@PathVariable Long operationId) {
-        return operationDbService.getOperationId(operationId);
+        return operationFacade.getOperationById(operationId);
     }
 
     @GetMapping("/getOperationDate")
     public Operation getOperationDate(@RequestParam LocalDate operationDate) {
-        return operationDbService.getOperationDate(operationDate);
+        return operationFacade.getOperationDate(operationDate);
     }
 
     @PostMapping(value = "/createOperation", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createOperation(@RequestBody Operation operation) {
-        operationDbService.saveOperation(operation);
+        operationFacade.createOperation(operation);
     }
 
     @PostMapping(value= "/makeTransfer")
     public void makeTransfer(@RequestParam Long accountFrom, @RequestParam Long accountTo, @RequestParam BigDecimal value) {
-        operationDbService.makeTransfer(accountFrom,accountTo,value);
+        operationFacade.makeTransfer(accountFrom,accountTo,value);
     }
 
     @DeleteMapping("/deleteOperation")
     public void deleteOperation(@RequestParam Long operationId) {
-        operationDbService.deleteOperationById(operationId);
+        operationFacade.deleteOperation(operationId);
     }
 }
