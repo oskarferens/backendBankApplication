@@ -48,10 +48,13 @@ public class AccountTestSuite {
 
     @Test
     public void shouldSaveAccount() {
-        //Given
         //When
+        List<Account> accounts = accountRepository.findAll();
         //Then
+        assertEquals(1, accounts.size());
         //Cleanup
+
+
     }
     @Test
     public void shouldGetAccountByCustomerId() {
