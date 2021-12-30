@@ -1,6 +1,7 @@
 package com.bank.repository;
 
 import com.bank.domain.Operation;
+import org.hibernate.stat.Statistics;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,5 +19,6 @@ public interface OperationRepository extends CrudRepository<Operation, Long> {
 
     Operation findByOperationDate(LocalDate date);
 
-    //List<Operation> findByFinalizedOperation(boolean operationComplete);
+    @Override
+    void deleteById(Long operationId);
 }

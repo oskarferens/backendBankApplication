@@ -39,19 +39,36 @@ public class OperationDbService {
         return operationRepository.save(operation);
     }
 
-    public void deleteOperationById (Long operationId) {
+    public void deleteByOperationId (Long operationId) {
         operationRepository.deleteById(operationId);
     }
 
     public void makeTransfer(Long idFrom, Long idTo, BigDecimal value) {
         Account accountFrom = accountRepository.findById(idFrom).orElseThrow(() -> new AccountNotFoundException("Account with id: " + idFrom + " not found"));
-        Account accountTo = accountRepository.findById(idTo).orElseThrow(() -> new AccountNotFoundException("Account with id: " + idTo + " not found"));;
-        accountFrom.setBalance(accountFrom.getBalance().add(value));
-        accountTo.setBalance(accountTo.getBalance().add(value));  //zamienic to na metody ze streama zeby dzialalo
+        Account accountTo = accountRepository.findById(idTo).orElseThrow(() -> new AccountNotFoundException("Account with id: " + idTo + " not found"));
+        accountFrom.setBalance(accountFrom.getBalance().subtract(value));
+        accountTo.setBalance(accountTo.getBalance().add(value));
         accountRepository.save(accountFrom);
         accountRepository.save(accountTo);
         Operation nextOperation = new Operation(idFrom,idTo,value,false,true,true,LocalDate.now());
         operationRepository.save(nextOperation);
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

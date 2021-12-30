@@ -13,8 +13,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CustomerMapper {
 
-    AccountRepository accountRepository;
-
     public Customer mapToCustomer(final CustomerDto customerDto) {
         return new Customer(
                 customerDto.getFirstName(),

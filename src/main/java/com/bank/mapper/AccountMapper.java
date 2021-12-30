@@ -14,7 +14,6 @@ public class AccountMapper {
 
     public Account mapToAccount(final AccountDto accountDto) {
         return new Account(
-                accountDto.getAccountId(),
                 accountDto.getBalance(),
                 accountDto.getBitcoinBalance()
         );

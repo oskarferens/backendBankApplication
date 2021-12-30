@@ -21,6 +21,4 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
     Customer findByFirstname(String firstname);
 
     void deleteById(Long id);
-
-    boolean existsByFirstname(String firstname);
 }

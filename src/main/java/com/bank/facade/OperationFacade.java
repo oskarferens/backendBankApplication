@@ -33,7 +33,7 @@ public class OperationFacade {
     }
 
     public void deleteOperation(Long operationId) {
-        operationDbService.deleteOperationById(operationId);
+        operationDbService.deleteByOperationId(operationId);
     }
 
     public void makeTransfer (Long idFrom, Long idTo, BigDecimal value) {

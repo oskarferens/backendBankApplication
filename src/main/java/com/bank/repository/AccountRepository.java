@@ -1,6 +1,7 @@
 package com.bank.repository;
 
 import com.bank.domain.Account;
+import com.bank.domain.Operation;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -17,5 +18,6 @@ public interface AccountRepository extends CrudRepository<Account, Long> {
     @Override
     Account save(Account account);
 
+    //List<Operation> findAllByOperationStat(Long aLong);
 
 }

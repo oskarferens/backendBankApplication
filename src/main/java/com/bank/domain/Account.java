@@ -26,8 +26,10 @@ public class Account {
     @Column(name = "bitcoinBalance")
     private Long bitcoinBalance;
 
-    public Account(Long accountId, BigDecimal balance, Long bitcoinBalance) {
-        this.accountId = accountId;
+    /*@Column(name = "operationStat")
+    private Long operationStat;*/
+
+    public Account( BigDecimal balance, Long bitcoinBalance) {
         this.balance = balance;
         this.bitcoinBalance = bitcoinBalance;
     }

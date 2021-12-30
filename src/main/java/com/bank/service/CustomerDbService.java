@@ -32,14 +32,6 @@ public class CustomerDbService {
         return customerRepository.save(customer);
     }
 
-    public boolean checkExistsByFirstname(String firstname) {
-        return customerRepository.existsByFirstname(firstname);
-    }
-
-    public Customer loadCustomerByFirstname (String firstname) throws CustomerNotFoundException{
-        return customerRepository.findByFirstname(firstname);
-    }
-
     public void deleteCustomerById (Long customerId) {
         customerRepository.deleteById(customerId);
     }

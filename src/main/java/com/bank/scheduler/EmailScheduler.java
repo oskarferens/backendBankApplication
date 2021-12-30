@@ -2,9 +2,9 @@ package com.bank.scheduler;
 
 import com.bank.config.AdminConfig;
 import com.bank.domain.Mail;
-import com.bank.repository.StatisticRepository;
+import com.bank.service.AccountDbService;
 import com.bank.service.EmailService;
-import com.bank.service.OperationStatService;
+import com.bank.service.OperationDbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -16,17 +16,19 @@ public class EmailScheduler {
     private static final String SUBJECT = "BankApplication: daily operation statistics";
     private final EmailService emailService;
     private final AdminConfig adminConfig;
-    private final OperationStatService operationStatService;
+    private final AccountDbService accountDbService;
+    private final OperationDbService operationDbService;
 
-    @Scheduled(cron = "0 0 10 * * *")
+    //@Scheduled(cron = "0 0 10 * * *")
+    @Scheduled(fixedDelay = 10000)
     public void sendInformationEmail() {
-        long operationsNumber = operationStatService.getOperations();
+        Long operationsQuantity = operationDbService.getAllOperations().stream().count();
         emailService.send(
                 new Mail(
                         adminConfig.getAdminMail(),
                         SUBJECT,
-                        "Today were made "+operationsNumber+" operations.",
-                        "juniordev8998@gmail.com"
+                        "Today were made "+operationsQuantity+" operations.",
+                        null
                 )
         );
     }
